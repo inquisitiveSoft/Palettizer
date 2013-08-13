@@ -109,9 +109,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4AB1828117BABBF7002C6290 /* Palettizer */ = {
+		4AB1828117BABBF7002C6290 /* palettizer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4AB1829017BABBF7002C6290 /* Build configuration list for PBXNativeTarget "Palettizer" */;
+			buildConfigurationList = 4AB1829017BABBF7002C6290 /* Build configuration list for PBXNativeTarget "palettizer" */;
 			buildPhases = (
 				4AB1827E17BABBF7002C6290 /* Sources */,
 				4AB1827F17BABBF7002C6290 /* Frameworks */,
@@ -121,7 +121,7 @@
 			);
 			dependencies = (
 			);
-			name = Palettizer;
+			name = palettizer;
 			productName = Palettizer;
 			productReference = 4AB1828217BABBF7002C6290 /* Palettizer */;
 			productType = "com.apple.product-type.tool";
@@ -147,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4AB1828117BABBF7002C6290 /* Palettizer */,
+				4AB1828117BABBF7002C6290 /* palettizer */,
 			);
 		};
 /* End PBXProject section */
@@ -266,7 +266,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4AB1829017BABBF7002C6290 /* Build configuration list for PBXNativeTarget "Palettizer" */ = {
+		4AB1829017BABBF7002C6290 /* Build configuration list for PBXNativeTarget "palettizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4AB1829117BABBF7002C6290 /* Debug */,

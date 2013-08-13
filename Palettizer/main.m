@@ -25,13 +25,13 @@ int main(int argc, const char * argv[])
 			}
 		}
 		
-//#ifdef TESTING
+#ifdef TESTING
 		installColorPalette = TRUE;
 		themeURL = absoluteURLForPath(@"~/Developer/Palettizer/Hues.tmTheme");
-//#endif
+#endif
 		
 		if(![[[themeURL pathExtension] lowercaseString] isEqualToString:@"tmtheme"]) {
-			printf("Usage:\npalettizer [path to .tmTheme file]\n\t-i --install\tWill install the color palette in ~/Library/Colors\n\t\t\t\t(Replaces any existing .clr file)\n");
+			printf("Usage: palettizer <path to .tmTheme file> [-i]\n\t-i\tInstall's the color palette in ~/Library/Colors\n \t\t(Replacing any existing .clr file)\n");
 			return 0;
 		}
 		
