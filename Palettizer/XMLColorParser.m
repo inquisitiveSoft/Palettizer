@@ -6,12 +6,12 @@
 
 
 @interface XMLColorParser() {
-	BOOL isParsingKey, isParsingValue;
+	BOOL isParsingKey, isParsingValue, isParsingScope;
 	NSInteger indexOfColor;
 }
 
 @property (readwrite) NSColorList *colorList;
-@property (copy) NSString *key, *content;
+@property (copy) NSString *key, *scope, *content;
 
 @end
 
@@ -52,6 +52,10 @@
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
+	if(isParsingKey && [string isEqualToString:@"scope"]) {
+		isParsingScope = TRUE;
+	}
+	
 	self.content = string;
 }
 
@@ -61,14 +65,20 @@
 	NSString *content = self.content;
 	
 	if(content.length) {
-		if(isParsingKey) {
+		if(isParsingScope) {
+			self.scope = content;
+		} else if(isParsingKey) {
 			self.key = content;
 		} else if(isParsingValue) {
-			[self addColorWithString:content forKey:self.key];
+			NSString *colorName = self.scope ? : self.key;
+			[self addColorWithString:content forName:colorName];
 		}
 	}
 	
-	self.key = nil;
+	if(isParsingScope && ![elementName isEqualToString:@"key"]) {
+		isParsingScope = FALSE;
+	}
+	
 	self.content = nil;
 	isParsingKey = FALSE;
 	isParsingValue = FALSE;
@@ -81,7 +91,7 @@
 }
 
 
-- (BOOL)addColorWithString:(NSString *)colorString forKey:(NSString *)key
+- (BOOL)addColorWithString:(NSString *)colorString forName:(NSString *)key
 {
 	NSString *hexString = [colorString stringByMatching:@"^#[A-Za-z0-9]{6}"];
 	
@@ -90,8 +100,13 @@
 		
 		if(color) {
 			indexOfColor++;
+			
+			if([_colorList colorWithKey:key])
+				key = nil;
+			
 			key = key ? : [NSString stringWithFormat:@"Color #%ld", indexOfColor];
 			
+				
 			[_colorList setColor:color forKey:key];
 		}
 	}

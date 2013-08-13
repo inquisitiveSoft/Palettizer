@@ -5,11 +5,8 @@
 #import "RegexKitLite.h"
 #import "XMLColorParser.h"
 
-NSString * const PALETTIZER_HEX_REGEX = @"<string>(\\s)*(#[A-Za-z0-9]{6})";
 
 NSURL *absoluteURLForPath(NSString *relativePath);
-NSColor *colorWithHexColorString(NSString *hexString);
-
 
 
 int main(int argc, const char * argv[])
@@ -28,13 +25,13 @@ int main(int argc, const char * argv[])
 			}
 		}
 		
-#ifdef DEBUG
+//#ifdef TESTING
 		installColorPalette = TRUE;
 		themeURL = absoluteURLForPath(@"~/Developer/Palettizer/Hues.tmTheme");
-#endif
+//#endif
 		
-		if(!themeURL) {
-			printf("Usage:\npalettizer [path to .tmTheme file]\n\t-i --install\tInstall the color palette in ~/Library/Colors\n\n");
+		if(![[[themeURL pathExtension] lowercaseString] isEqualToString:@"tmtheme"]) {
+			printf("Usage:\npalettizer [path to .tmTheme file]\n\t-i --install\tWill install the color palette in ~/Library/Colors\n\t\t\t\t(Replaces any existing .clr file)\n");
 			return 0;
 		}
 		
@@ -71,7 +68,6 @@ int main(int argc, const char * argv[])
 }
 
 
-
 NSURL *absoluteURLForPath(NSString *relativePath) {
 	if(!relativePath || relativePath.length == 0)
 		return nil;
@@ -82,5 +78,11 @@ NSURL *absoluteURLForPath(NSString *relativePath) {
 	}
 						
 	relativePath = [[relativePath stringByExpandingTildeInPath] stringByStandardizingPath];
-	return [NSURL fileURLWithPath:relativePath];
+	
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	if([fileManager fileExistsAtPath:relativePath]) {
+		return [NSURL fileURLWithPath:relativePath];
+	}
+	
+	return nil;
 }
