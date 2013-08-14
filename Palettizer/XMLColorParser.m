@@ -40,9 +40,9 @@
 	isParsingKey = FALSE;
 	isParsingValue = FALSE;
 	
-	if([elementName isEqualToString:@"key"]) {
+	if([elementName caseInsensitiveCompare:@"key"] == NSOrderedSame) {
 		isParsingKey = TRUE;
-	} else if([elementName isEqualToString:@"string"]) {
+	} else if([elementName caseInsensitiveCompare:@"string"] == NSOrderedSame) {
 		isParsingValue = TRUE;
 	} else {
 		self.key = nil;
@@ -52,7 +52,7 @@
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-	if(isParsingKey && [string isEqualToString:@"scope"]) {
+	if(isParsingKey && [string caseInsensitiveCompare:@"scope"] == NSOrderedSame) {
 		isParsingScope = TRUE;
 	}
 	
@@ -75,7 +75,7 @@
 		}
 	}
 	
-	if(isParsingScope && ![elementName isEqualToString:@"key"]) {
+	if(isParsingScope && ![elementName caseInsensitiveCompare:@"key"] == NSOrderedSame) {
 		isParsingScope = FALSE;
 	}
 	

@@ -30,7 +30,7 @@ int main(int argc, const char * argv[])
 		themeURL = absoluteURLForPath(@"~/Developer/Palettizer/Hues.tmTheme");
 #endif
 		
-		if(![[[themeURL pathExtension] lowercaseString] isEqualToString:@"tmtheme"]) {
+		if([[themeURL pathExtension] caseInsensitiveCompare:@"tmtheme"] != NSOrderedSame) {
 			printf("Usage: palettizer <path to .tmTheme file> [-i]\n\t-i\tInstall's the color palette in ~/Library/Colors\n \t\t(Replacing any existing .clr file)\n");
 			return 0;
 		}
