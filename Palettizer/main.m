@@ -51,13 +51,17 @@ int main(int argc, const char * argv[])
 		} else {
 			NSString *destinationPath = [@"~/Library/Colors" stringByExpandingTildeInPath];
 			
-			if(!installColorPalette) {
+			if(installColorPalette) {
+				destinationPath = [destinationPath stringByAppendingPathComponent:[themeURL lastPathComponent]];
+			} else {
 				destinationPath = [themeURL path];
-				destinationPath = [[destinationPath stringByDeletingPathExtension] stringByAppendingPathExtension:@"clr"];
 			}
 			
+			// Replace the .tmtheme with the .clr extension
+			destinationPath = [[destinationPath stringByDeletingPathExtension] stringByAppendingPathExtension:@"clr"];
+
 			if([colorList writeToFile:destinationPath]) {
-				printf("Successfully created the new color palette with %ld colors to:\n %s\n", numberOfColors, [destinationPath UTF8String]);
+				printf("Successfully created a color palette with %ld colors:\n %s\n", numberOfColors, [destinationPath UTF8String]);
 			} else {
 				printf("Failed to create color palette\n");
 			}
