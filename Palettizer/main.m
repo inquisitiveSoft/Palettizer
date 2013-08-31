@@ -52,7 +52,12 @@ int main(int argc, const char * argv[])
 #endif
 		
 		if([themeURLs count] == 0) {
-			printf("Usage: palettizer <path to .tmTheme file> [-i]\n\t-i\tInstall's the color palette in ~/Library/Colors\n \t\t(Replacing any existing .clr file)\n");
+			printf("Usage: palettizer [options] <path to .tmTheme file>\n"
+					"\t-i  --install		Install's the color palette in ~/Library/Colors\n"
+					"\t-s  --syml		Generates a .syml-theme (json) file (overrides -i)\n"
+					"\t-r --replace		Replaces any existing .clr or .json file\n"
+					"\t-v  -verbose\n\n");
+			
 			return 0;
 		}
 		
@@ -112,13 +117,15 @@ void writeColorListToThemeFile(NSColorList *colorList, NSString *path, BOOL verb
 	// MAnually construct the json because it wants to look good
 	NSMutableString *jsonString = [[NSMutableString alloc] init];
 	NSArray *mapBetweenColorKeys = SYMLMapBetweenColorKeys();
+	NSString *fileName = [[path lastPathComponent] stringByDeletingPathExtension];
 	
-	// Add placeholder attributes
+	// Add the theme name and placeholder attributes
 	[jsonString appendFormat:@"{\n"
-							"	\"identifier\"				: \"id\",\n"
-							"	\"name\"					: \"placeholder\",\n"
-							"	\"attribution\"				: \"Anon\",\n"
-							"	\"link\"					: \"link\",\n\n"];
+							"	\"identifier\"      : \"%@\",\n"
+							"	\"name\"            : \"%@\",\n"
+							"	\"attribution\"     : \"Anon\",\n"
+							"	\"link\"            : \"http://example.com/\",\n\n",
+									fileName, fileName];
 	
 	
 	BOOL isFirstColor = TRUE;
@@ -202,10 +209,7 @@ void writeColorListToThemeFile(NSColorList *colorList, NSString *path, BOOL verb
 		}
 	}
 	
-	
-	if([remainingDestinationKeys count])
-		printf("Colors which couldn't to be set: %s\n", [[remainingDestinationKeys description] UTF8String]);
-	
+		
 	NSError *error = nil;
 	if(![jsonString writeToFile:path atomically:TRUE encoding:NSUTF8StringEncoding error:&error]) {
 		printf("Couldn't write to file:'%s'\n	Error: %s\n\n", [path UTF8String], [[error localizedDescription] UTF8String]);
@@ -216,11 +220,15 @@ void writeColorListToThemeFile(NSColorList *colorList, NSString *path, BOOL verb
 			if(verbose) {
 				printf("	Unmatched keys in the .tmtheme file: %s\n\n", [[remainingSourceKeys description] UTF8String]);
 			} else {
-				printf("	Found %lx unmatched keys in the .tmtheme file\n", [remainingSourceKeys count]);
+				printf("	Found %ld unmatched keys in the .tmtheme file\n", [remainingSourceKeys count]);
 			}
 			
-			printf("	Added %lx colors to the additionalColors array\n\n", [additionalColors count]);
+			printf("	Added %ld colors to the additionalColors array\n\n", [additionalColors count]);
 		}
+		
+		if([remainingDestinationKeys count])
+			printf("Colors which couldn't to be set: %s\n\n", [[remainingDestinationKeys description] UTF8String]);
+
 	}
 }
 
