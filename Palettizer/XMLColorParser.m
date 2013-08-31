@@ -70,8 +70,11 @@
 		} else if(isParsingKey) {
 			self.key = content;
 		} else if(isParsingValue) {
-			NSString *colorName = self.scope ? : self.key;
-			[self addColorWithString:content forName:colorName];
+			NSArray *colorNames = [(self.scope ? : self.key) componentsSeparatedByString:@", "];
+			
+			for(NSString *colorName in colorNames) {
+				[self addColorWithString:content forName:colorName];
+			}
 		}
 	}
 	

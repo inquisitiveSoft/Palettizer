@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A31B28A17D0C7BC00640F50 /* NSColor+Formating.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31B28917D0C7BC00640F50 /* NSColor+Formating.m */; };
+		4A31B28D17D207BC00640F50 /* SymlColorMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A31B28C17D207BC00640F50 /* SymlColorMap.m */; };
 		4A838A6817BAE4F3006DCB6D /* XMLColorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A838A6717BAE4F3006DCB6D /* XMLColorParser.m */; };
 		4AB1828917BABBF7002C6290 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB1828817BABBF7002C6290 /* main.m */; };
 		4AB1828D17BABBF7002C6290 /* Palettizer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4AB1828C17BABBF7002C6290 /* Palettizer.1 */; };
@@ -30,9 +32,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A31B28817D0C7BC00640F50 /* NSColor+Formating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Formating.h"; sourceTree = "<group>"; };
+		4A31B28917D0C7BC00640F50 /* NSColor+Formating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Formating.m"; sourceTree = "<group>"; };
+		4A31B28B17D206A600640F50 /* SymlColorMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SymlColorMap.h; sourceTree = "<group>"; };
+		4A31B28C17D207BC00640F50 /* SymlColorMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymlColorMap.m; sourceTree = "<group>"; };
 		4A838A6617BAE4F3006DCB6D /* XMLColorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLColorParser.h; sourceTree = "<group>"; };
 		4A838A6717BAE4F3006DCB6D /* XMLColorParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLColorParser.m; sourceTree = "<group>"; };
-		4AB1828217BABBF7002C6290 /* Palettizer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Palettizer; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AB1828217BABBF7002C6290 /* palettizer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = palettizer; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB1828817BABBF7002C6290 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4AB1828B17BABBF7002C6290 /* Palettizer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Palettizer-Prefix.pch"; sourceTree = "<group>"; };
 		4AB1828C17BABBF7002C6290 /* Palettizer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Palettizer.1; sourceTree = "<group>"; };
@@ -69,7 +75,7 @@
 		4AB1828317BABBF7002C6290 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4AB1828217BABBF7002C6290 /* Palettizer */,
+				4AB1828217BABBF7002C6290 /* palettizer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,6 +99,10 @@
 				4AB1828C17BABBF7002C6290 /* Palettizer.1 */,
 				4AB1829317BABF4A002C6290 /* RegexKitLite.h */,
 				4AB1829417BABF4A002C6290 /* RegexKitLite.m */,
+				4A31B28817D0C7BC00640F50 /* NSColor+Formating.h */,
+				4A31B28917D0C7BC00640F50 /* NSColor+Formating.m */,
+				4A31B28B17D206A600640F50 /* SymlColorMap.h */,
+				4A31B28C17D207BC00640F50 /* SymlColorMap.m */,
 				4AB1828A17BABBF7002C6290 /* Supporting Files */,
 			);
 			path = Palettizer;
@@ -123,7 +133,7 @@
 			);
 			name = palettizer;
 			productName = Palettizer;
-			productReference = 4AB1828217BABBF7002C6290 /* Palettizer */;
+			productReference = 4AB1828217BABBF7002C6290 /* palettizer */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -157,6 +167,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A31B28A17D0C7BC00640F50 /* NSColor+Formating.m in Sources */,
+				4A31B28D17D207BC00640F50 /* SymlColorMap.m in Sources */,
 				4AB1829517BABF4A002C6290 /* RegexKitLite.m in Sources */,
 				4AB1828917BABBF7002C6290 /* main.m in Sources */,
 				4A838A6817BAE4F3006DCB6D /* XMLColorParser.m in Sources */,
